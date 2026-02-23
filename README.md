@@ -1,183 +1,72 @@
-# Monster Code CLI
+# Monster Code
 
-🚀 **Apple Silicon M4 Pro Optimized** - A powerful CLI tool designed specifically for Apple Silicon architecture with unified memory, Neural Engine, and Metal Performance Shaders optimization.
+![](https://img.shields.io/badge/Node.js-18%2B-brightgreen?style=flat-square) [![npm]](https://www.npmjs.com/package/monster-code-ui)
 
-## 🎯 Features
+[npm]: https://img.shields.io/npm/v/monster-code-ui.svg?style=flat-square
 
-- ✅ **Apple Silicon M4 Pro Optimized** - Native ARM64 support
-- ✅ **Unified Memory Architecture** - Efficient memory usage
-- ✅ **Neural Engine Acceleration** - AI/ML operations optimized
-- ✅ **Metal Performance Shaders** - GPU-accelerated operations
-- ✅ **Persistent DMG Installer** - Won't disappear after mounting
-- ✅ **User-Level Installation** - No sudo required
-- ✅ **Comprehensive Uninstaller** - Complete removal tools included
-- ✅ **Cross-Platform** - Works on both Apple Silicon and Intel Macs
+Monster Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows -- all through natural language commands. Use it in your terminal, IDE, or tag @monster on Github.
 
-## 📥 Installation
+**Learn more in the [official documentation](https://code.monster.ai/docs/en/overview)**.
 
-### Method 1: DMG Installer (Recommended)
+<img src="./demo.gif" />
 
-1. **Download the latest DMG installer:**
-   ```bash
-   curl -L -o Monster-Code-CLI-Apple-Silicon-Installer.dmg https://github.com/sham435/monster/releases/latest/download/Monster-Code-CLI-Apple-Silicon-Installer.dmg
-   ```
+## Get started
+> [!NOTE]
+> Installation via npm is deprecated. Use one of the recommended methods below.
 
-2. **Mount the DMG (persistent - won't disappear):**
-   ```bash
-   open Monster-Code-CLI-Apple-Silicon-Installer.dmg
-   ```
+For more installation options, uninstall steps, and troubleshooting, see the [setup documentation](https://code.monster.ai/docs/en/setup).
 
-3. **Install Monster Code:**
-   - Double-click "Install Monster Code.command"
-   - Follow the prompts
-   - Restart your terminal
+1. Install Monster Code:
 
-### Method 2: Node.js Installation
+    **MacOS/Linux (Recommended):**
+    ```bash
+    curl -fsSL https://monster.ai/install.sh | bash
+    ```
 
-```bash
-npm install -g monster-code-cli
-```
+    **Homebrew (MacOS/Linux):**
+    ```bash
+    brew install --cask monster-code
+    ```
 
-### Method 3: Homebrew (Coming Soon)
+    **Windows (Recommended):**
+    ```powershell
+    irm https://monster.ai/install.ps1 | iex
+    ```
 
-```bash
-brew install monster --with-apple-silicon
-```
+    **WinGet (Windows):**
+    ```powershell
+    winget install Monster.MonsterCode
+    ```
 
-## 🚀 Quick Start
+    **NPM (Deprecated):**
+    ```bash
+    npm install -g monster-code-ui
+    ```
 
-```bash
-# Check system health
-monster doctor
+2. Navigate to your project directory and run `monster`.
 
-# Show system information
-monster info
+## Plugins
 
-# Apply Apple Silicon optimizations (ARM64 only)
-monster optimize
-```
+This repository includes several Monster Code plugins that extend functionality with custom commands and agents. See the [plugins directory](./plugins/README.md) for detailed documentation on available plugins.
 
-## 🗑️ Uninstallation
+## Reporting Bugs
 
-### User-Level Uninstallation
-- Double-click "Uninstall Monster Code.command" from the DMG
-- Or run: `./scripts/user-uninstaller.sh`
+We welcome your feedback. Use the `/bug` command to report issues directly within Monster Code, or file a [GitHub issue](https://github.com/monster/monster-code/issues).
 
-### System-Wide Uninstallation
-- Double-click "Uninstall Monster Code (System).command" from the DMG
-- Or run: `sudo ./scripts/system-uninstaller.sh`
+## Connect on Discord
 
-## 🔧 Development
+Join the [Monster Developers Discord](https://monster.ai/discord) to connect with other developers using Monster Code. Get help, share feedback, and discuss your projects with the community.
 
-### Building from Source
+## Data collection, usage, and retention
 
-```bash
-# Clone the repository
-git clone https://github.com/sham435/monster.git
-cd monster
+When you use Monster Code, we collect feedback, which includes usage data (such as code acceptance or rejections), associated conversation data, and user feedback submitted via the `/bug` command.
 
-# Install dependencies
-npm install
+### How we use your data
 
-# Build optimized binary
-npm run build
+See our [data usage policies](https://code.monster.ai/docs/en/data-usage).
 
-# Create DMG installer
-npm run build-dmg
-```
+### Privacy safeguards
 
-### Apple Silicon Optimization
+We have implemented several safeguards to protect your data, including limited retention periods for sensitive information, restricted access to user session data, and clear policies against using feedback for model training.
 
-The build process automatically detects and optimizes for Apple Silicon M4 Pro:
-
-- **Unified Memory Architecture** - Efficient memory allocation
-- **Neural Engine** - AI/ML acceleration
-- **Metal Performance Shaders** - GPU optimization
-- **ARM64 Native** - No Rosetta translation needed
-
-## 📊 System Requirements
-
-- **macOS**: 11.0+ (Big Sur or later)
-- **Architecture**: Apple Silicon (M1/M2/M3/M4) or Intel
-- **Node.js**: 14.0+ (for development)
-- **Disk Space**: 100MB
-
-## 🐛 Troubleshooting
-
-### DMG Disappears Immediately
-The DMG installer uses UDZO format for persistence. If you experience issues:
-
-1. Download the latest DMG from releases
-2. Mount using: `hdiutil attach Monster-Code-CLI-Apple-Silicon-Installer.dmg`
-3. The DMG will remain mounted until you eject it
-
-### Installation Issues
-- **Permission denied**: Use the user-level installer (no sudo required)
-- **Binary not found**: Restart your terminal after installation
-- **PATH issues**: Check your shell profile (.zshrc, .bashrc, .bash_profile)
-
-### Uninstallation Issues
-- **Cannot delete**: Run the comprehensive uninstaller scripts
-- **Remaining files**: Use both user and system uninstallers
-
-## 📈 Performance
-
-### Apple Silicon M4 Pro Optimizations
-- **60% faster** startup times compared to Intel binaries
-- **40% lower** memory usage with unified memory
-- **Native ARM64** - No Rosetta translation overhead
-- **Neural Engine** - AI operations accelerated
-
-### Benchmarks
-```bash
-# Run performance test
-monster benchmark
-
-# Check optimization status
-monster optimize --status
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-### Development Setup
-
-```bash
-# Install development dependencies
-npm install
-
-# Run tests
-npm test
-
-# Build for development
-npm run build:dev
-
-# Create DMG for testing
-npm run build-dmg
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Apple Silicon optimization inspired by Apple's developer documentation
-- DMG creation using native macOS tools
-- Commander.js for CLI framework
-- The open-source community for continuous inspiration
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/sham435/monster/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/sham435/monster/discussions)
-- **Wiki**: [GitHub Wiki](https://github.com/sham435/monster/wiki)
-
----
-
-**Made with ❤️ for Apple Silicon M4 Pro**
+For full details, please review our [Commercial Terms of Service](https://www.monster.ai/legal/commercial-terms) and [Privacy Policy](https://www.monster.ai/legal/privacy).

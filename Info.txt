@@ -1,0 +1,38 @@
+# 🚀 Monster Code CLI - Quick Reference
+
+## 📋 Installation Steps
+1. **Double-click** "Install Monster Code.command"
+2. **Follow prompts** in Terminal
+3. **Restart terminal** when complete
+4. **Test**: `monster --version`
+
+## 🔧 Essential Commands
+```bash
+monster doctor      # Check system health
+monster info        # Show system information
+monster optimize    # Apply Apple Silicon optimizations
+monster --help      # Show all commands
+```
+
+## 🗑️ Uninstallation
+- **User-level**: Double-click "Uninstall Monster Code.command"
+- **System-wide**: Double-click "Uninstall Monster Code (System).command"
+
+## 🧠 Apple Silicon Features
+- ✅ Unified Memory Architecture
+- ✅ Neural Engine acceleration
+- ✅ Metal Performance Shaders
+- ✅ Native ARM64 execution
+
+## 🆘 Need Help?
+- **Run**: `monster doctor` for diagnostics
+- **Check**: USER_INSTRUCTIONS.md for detailed help
+- **Report**: Issues at github.com/sham435/monster
+
+## 💡 Tips
+- This DMG is persistent - won't disappear after mounting
+- Use `monster doctor` regularly to check system health
+- Apple Silicon users get automatic performance optimizations
+
+---
+**Monster Code CLI - Apple Silicon M4 Pro Optimized**

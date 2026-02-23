@@ -26,9 +26,9 @@ if [[ -f "/usr/local/bin/monster" ]]; then
     rm -f "/usr/local/bin/monster"
 fi
 
-if [[ -L "/usr/local/bin/claude" ]]; then
-    echo "🗑️  Removing: /usr/local/bin/claude (symlink)"
-    rm -f "/usr/local/bin/claude"
+if [[ -L "/usr/local/bin/monster" ]]; then
+    echo "🗑️  Removing: /usr/local/bin/monster (symlink)"
+    rm -f "/usr/local/bin/monster"
 fi
 
 if [[ -d "/Applications/MonsterCode.app" ]]; then

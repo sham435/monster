@@ -6,10 +6,33 @@
 
 set -e
 
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+print_status() {
+    echo -e "${BLUE}ℹ️  $1${NC}"
+}
+
+print_success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+print_warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+}
+
+print_error() {
+    echo -e "${RED}❌ $1${NC}"
+}
+
 echo "🚀 Monster Code CLI User Installer"
 echo "==================================="
 echo ""
-echo "🔍 Detecting system..."
+print_status "Detecting system..."
 
 # Detect architecture
 ARCH=$(uname -m)
@@ -59,7 +82,7 @@ elif [[ -f "./monster" ]]; then
 else
     echo "⚠️  Monster binary not found in current directory"
     echo "   Looking for alternative locations..."
-    
+
     # Check common build locations
     BUILD_LOCATIONS=(
         "./build/monster"
@@ -67,7 +90,7 @@ else
         "./bin/monster"
         "../monster"
     )
-    
+
     BINARY_FOUND=false
     for location in "${BUILD_LOCATIONS[@]}"; do
         if [[ -f "$location" ]]; then
@@ -79,7 +102,7 @@ else
             break
         fi
     done
-    
+
     if [[ "$BINARY_FOUND" == false ]]; then
         echo "❌ No monster binary found"
         echo ""
@@ -128,7 +151,7 @@ fi
 if [[ "$ARCH" == "arm64" ]]; then
     echo ""
     echo "🧠 Configuring Apple Silicon optimizations..."
-    
+
     # Add Apple Silicon optimizations
     if ! grep -q "MONSTER_APPLE_SILICON" "$SHELL_PROFILE" 2>/dev/null; then
         echo "" >> "$SHELL_PROFILE"

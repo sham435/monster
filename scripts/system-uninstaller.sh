@@ -55,9 +55,9 @@ if [[ -f "/usr/local/bin/monster" ]]; then
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
-if [[ -L "/usr/local/bin/claude" ]]; then
-    echo "   ✅ Found: /usr/local/bin/claude (symlink)"
-    INSTALLATIONS+=("/usr/local/bin/claude")
+if [[ -L "/usr/local/bin/monster" ]]; then
+    echo "   ✅ Found: /usr/local/bin/monster (symlink)"
+    INSTALLATIONS+=("/usr/local/bin/monster")
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
@@ -79,7 +79,7 @@ SYSTEM_LOCATIONS=(
     "/opt/monster"
     "/usr/local/opt/monster"
     "/usr/bin/monster"
-    "/usr/bin/claude"
+    "/usr/bin/monster"
 )
 
 for location in "${SYSTEM_LOCATIONS[@]}"; do
@@ -140,13 +140,13 @@ echo "🔍 Final verification..."
 echo "========================="
 
 # Check what's left
-REMAINING=$(find /usr/local/bin /usr/bin /opt /Applications -name "monster" -o -name "claude" -o -name "MonsterCode.app" 2>/dev/null | wc -l)
+REMAINING=$(find /usr/local/bin /usr/bin /opt /Applications -name "monster" -o -name "monster" -o -name "MonsterCode.app" 2>/dev/null | wc -l)
 
 if [[ $REMAINING -eq 0 ]]; then
     echo "✅ All system-wide Monster Code installations removed successfully!"
 else
     echo "⚠️  Found $REMAINING remaining system-wide installations:"
-    find /usr/local/bin /usr/bin /opt /Applications -name "monster" -o -name "claude" -o -name "MonsterCode.app" 2>/dev/null
+    find /usr/local/bin /usr/bin /opt /Applications -name "monster" -o -name "monster" -o -name "MonsterCode.app" 2>/dev/null
 fi
 
 echo ""

@@ -42,16 +42,16 @@ if [[ -f "$HOME/.local/bin/monster" ]]; then
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
-if [[ -L "$HOME/.local/bin/claude" ]]; then
-    echo "   ✅ Found: $HOME/.local/bin/claude (symlink)"
-    INSTALLATIONS+=("$HOME/.local/bin/claude")
+if [[ -L "$HOME/.local/bin/monster" ]]; then
+    echo "   ✅ Found: $HOME/.local/bin/monster (symlink)"
+    INSTALLATIONS+=("$HOME/.local/bin/monster")
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
-# 2. Claude-specific location
-if [[ -f "$HOME/.claude/bin/claude" ]]; then
-    echo "   ✅ Found: $HOME/.claude/bin/claude"
-    INSTALLATIONS+=("$HOME/.claude/bin/claude")
+# 2. Monster-specific location
+if [[ -f "$HOME/.monster/bin/monster" ]]; then
+    echo "   ✅ Found: $HOME/.monster/bin/monster"
+    INSTALLATIONS+=("$HOME/.monster/bin/monster")
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
@@ -88,8 +88,8 @@ if [[ -f "/usr/local/bin/monster" ]]; then
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
-if [[ -L "/usr/local/bin/claude" ]]; then
-    echo "   ⚠️  Found: /usr/local/bin/claude (system-wide - requires admin)"
+if [[ -L "/usr/local/bin/monster" ]]; then
+    echo "   ⚠️  Found: /usr/local/bin/monster (system-wide - requires admin)"
     FOUND_COUNT=$((FOUND_COUNT + 1))
 fi
 
@@ -236,7 +236,7 @@ if [[ $SYSTEM_REMOVALS -gt 0 ]]; then
     echo ""
     echo "   To remove these, run this command in Terminal:"
     echo "   sudo rm -f /usr/local/bin/monster"
-    echo "   sudo rm -f /usr/local/bin/claude"
+    echo "   sudo rm -f /usr/local/bin/monster"
     echo "   sudo rm -rf /Applications/MonsterCode.app"
     echo ""
     echo "   Or run: sudo ./Uninstall Monster Code (System).command"
@@ -247,13 +247,13 @@ echo "🔍 Final verification..."
 echo "========================="
 
 # Check what's left
-REMAINING=$(find $HOME/.local/bin $HOME/.claude/bin -name "monster" -o -name "claude" 2>/dev/null | wc -l)
+REMAINING=$(find $HOME/.local/bin $HOME/.monster/bin -name "monster" -o -name "monster" 2>/dev/null | wc -l)
 
 if [[ $REMAINING -eq 0 ]]; then
     echo "✅ All user-level Monster Code installations removed successfully!"
 else
     echo "⚠️  Found $REMAINING remaining user-level installations:"
-    find $HOME/.local/bin $HOME/.claude/bin -name "monster" -o -name "claude" 2>/dev/null
+    find $HOME/.local/bin $HOME/.monster/bin -name "monster" -o -name "monster" 2>/dev/null
 fi
 
 echo ""

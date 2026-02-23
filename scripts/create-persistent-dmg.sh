@@ -72,6 +72,15 @@ echo ""
 # Copy installer scripts
 print_status "Copying installer scripts..."
 
+# Copy the monster binary first (needed by installer)
+if [[ -f "build/monster" ]]; then
+    cp "build/monster" "$STAGING_DIR/monster"
+    chmod +x "$STAGING_DIR/monster"
+    print_success "Monster binary copied"
+else
+    print_warning "Monster binary not found: build/monster"
+fi
+
 if [[ -f "scripts/$INSTALLER_SCRIPT" ]]; then
     cp "scripts/$INSTALLER_SCRIPT" "$STAGING_DIR/Install Monster Code.command"
     chmod +x "$STAGING_DIR/Install Monster Code.command"
@@ -107,14 +116,26 @@ if [[ -f "LICENSE" ]]; then
     print_success "LICENSE copied"
 fi
 
+# Copy instruction files
+if [[ -f "USER_INSTRUCTIONS.md" ]]; then
+    cp "USER_INSTRUCTIONS.md" "$STAGING_DIR/USER_INSTRUCTIONS.md"
+    print_success "User instructions copied"
+fi
+
+if [[ -f "Info.txt" ]]; then
+    cp "Info.txt" "$STAGING_DIR/Info.txt"
+    print_success "Quick reference copied"
+fi
+
 # Copy INSTALL.md if it exists
 if [[ -f "INSTALL.md" ]]; then
     cp "INSTALL.md" "$STAGING_DIR/INSTALL.md"
     print_success "INSTALL.md copied"
 fi
 
-# Create a simple info file
-cat > "$STAGING_DIR/Info.txt" << EOF
+# Create a simple info file (fallback if Info.txt doesn't exist)
+if [[ ! -f "Info.txt" ]]; then
+    cat > "$STAGING_DIR/Info.txt" << EOF
 Monster Code CLI - Apple Silicon M4 Pro Installer
 =================================================
 
@@ -140,8 +161,8 @@ Monster Code CLI - Apple Silicon M4 Pro Installer
 • GitHub: https://github.com/sham435/monster
 • Issues: https://github.com/sham435/monster/issues
 EOF
-
-print_success "Info file created"
+    print_success "Info file created"
+fi
 echo ""
 
 # Create AppleScript for better UX
