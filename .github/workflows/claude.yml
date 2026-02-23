@@ -32,6 +32,8 @@ jobs:
       - name: Run Monster Code
         id: monster
         uses: anthropics/claude-code-action@v1
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: "--model claude-sonnet-4-5-20250929"
+          claude_args: "--model claude-sonnet-4-5-20250929 --mcp-config .monster/mcp/tavily-remote.json"
