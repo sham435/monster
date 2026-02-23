@@ -1,0 +1,11 @@
+{
+  "_comment": "Remote Tavily MCP server. Set TAVILY_API_KEY in your environment.",
+  "tavily": {
+    "type": "http",
+    "url": "https://mcp.tavily.com/mcp/?tavilyApiKey=${TAVILY_API_KEY}",
+    "headers": {
+      "Authorization": "Bearer ${TAVILY_API_KEY}",
+      "DEFAULT_PARAMETERS": "{\"include_images\":true,\"search_depth\":\"basic\",\"max_results\":10}"
+    }
+  }
+}

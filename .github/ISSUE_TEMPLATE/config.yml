@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discord Community
+    url: https://anthropic.com/discord
+    about: Get help, ask questions, and chat with other Monster Code users
+  - name: 📖 Documentation
+    url: https://docs.monster.com/en/docs/monster-code
+    about: Read the official documentation and guides
+  - name: 🎓 Getting Started Guide
+    url: https://docs.monster.com/en/docs/monster-code/quickstart
+    about: New to Monster Code? Start here
+  - name: 🔧 Troubleshooting Guide
+    url: https://docs.monster.com/en/docs/monster-code/troubleshooting
+    about: Common issues and how to fix them
