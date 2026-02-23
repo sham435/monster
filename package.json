@@ -1,0 +1,53 @@
+{
+  "name": "monster-code-cli",
+  "version": "1.0.0",
+  "description": "Monster Code CLI - Apple Silicon M4 Pro Optimized Development Tool",
+  "main": "src/index.js",
+  "bin": {
+    "monster": "src/cli.js"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "build": "node scripts/build-apple-silicon.js",
+    "build-dmg": "./scripts/create-persistent-dmg.sh",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doctor": "node src/cli.js doctor"
+  },
+  "keywords": [
+    "cli",
+    "development",
+    "apple-silicon",
+    "m4-pro",
+    "optimization",
+    "macos",
+    "dmg",
+    "installer"
+  ],
+  "author": "sham435",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "inquirer": "^8.2.6"
+  },
+  "devDependencies": {
+    "pkg": "^5.8.1"
+  },
+  "pkg": {
+    "scripts": [
+      "src/**/*.js"
+    ],
+    "assets": [
+      "package.json"
+    ],
+    "targets": [
+      "node18-macos-arm64",
+      "node18-macos-x64"
+    ],
+    "outputPath": "dist"
+  }
+}

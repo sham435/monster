@@ -1,0 +1,107 @@
+name: Build and Release DMG Installer
+
+on:
+  push:
+    branches: [ main, master, monster-init ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-dmg:
+    runs-on: macos-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install -g pkg
+        
+    - name: Build optimized binary
+      run: |
+        node scripts/build-apple-silicon.js
+        
+    - name: Make installer scripts executable
+      run: |
+        chmod +x scripts/user-installer.sh
+        chmod +x scripts/user-uninstaller.sh
+        chmod +x scripts/system-uninstaller.sh
+        chmod +x scripts/create-persistent-dmg.sh
+        
+    - name: Create persistent DMG installer
+      run: |
+        ./scripts/create-persistent-dmg.sh
+        
+    - name: Upload DMG artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: monster-code-cli-dmg
+        path: Monster-Code-CLI-Apple-Silicon-Installer.dmg
+        retention-days: 30
+        
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Monster Code CLI ${{ github.ref }}
+        body: |
+          ## Monster Code CLI Release
+          
+          ### 🎯 What's New
+          - Apple Silicon M4 Pro optimized
+          - Persistent DMG installer (won't disappear)
+          - Comprehensive uninstaller included
+          - User-level installation (no sudo required)
+          
+          ### 📥 Installation
+          1. Download the DMG file below
+          2. Mount the DMG (it won't disappear)
+          3. Double-click "Install Monster Code.command"
+          4. Follow the prompts
+          5. Restart your terminal
+          
+          ### 🗑️ Uninstallation
+          - User-level: Double-click "Uninstall Monster Code.command"
+          - System-wide: Double-click "Uninstall Monster Code (System).command"
+          
+          ### 🔧 Features
+          ✅ Apple Silicon M4 Pro optimized
+          ✅ Unified Memory Architecture support
+          ✅ Neural Engine acceleration
+          ✅ Metal Performance Shaders
+          ✅ Persistent DMG (won't disappear)
+          ✅ User-level installation (no sudo required)
+          ✅ Comprehensive uninstaller included
+          
+          ### 📊 System Requirements
+          - macOS 11.0+ (Big Sur or later)
+          - Apple Silicon (M1, M2, M3, M4) or Intel Mac
+          - 100MB free disk space
+          
+        draft: false
+        prerelease: false
+        
+    - name: Upload Release Asset
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./Monster-Code-CLI-Apple-Silicon-Installer.dmg
+        asset_name: Monster-Code-CLI-Apple-Silicon-Installer.dmg
+        asset_content_type: application/x-apple-diskimage
